@@ -16,7 +16,9 @@ import com.example.androidretrofit.data.db.toInfo
 import com.example.androidretrofit.presentation.viewModel.InfoViewModel
 import com.example.androidretrofit.presentation.viewModel.InfoViewModelFactory
 import com.example.androidretrofit.ui.theme.AndroidRetrofitTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val movieViewModel by viewModels<InfoViewModel> { InfoViewModelFactory(this) }
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

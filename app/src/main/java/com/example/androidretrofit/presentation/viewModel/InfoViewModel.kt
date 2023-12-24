@@ -8,15 +8,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidretrofit.data.api.ApiService
 import com.example.androidretrofit.data.db.AppDatabase
+import com.example.androidretrofit.data.db.InfoDao
 import com.example.androidretrofit.data.db.InfoEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class InfoViewModel(private val context: Context) : ViewModel() {
+@HiltViewModel
+class InfoViewModel @Inject constructor() : ViewModel() {
     var infoListResponse: List<InfoEntity> by mutableStateOf(listOf())
     var errorMessage: String by mutableStateOf("")
 
-    private val infoDao = AppDatabase.getInstance(context).infoDao()
+    private lateinit var infoDao: InfoDao
 
+    fun initialize(context: Context) {
+        infoDao = AppDatabase.getInstance(context).infoDao()
+    }
     fun getInfoList() {
         viewModelScope.launch {
             try {

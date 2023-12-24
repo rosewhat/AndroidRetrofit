@@ -4,7 +4,9 @@ import com.example.androidretrofit.domain.Info
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import javax.inject.Singleton
 
+@Singleton
 interface ApiService {
     @GET("android/posts.json")
     suspend fun getInfo() : List<Info>
